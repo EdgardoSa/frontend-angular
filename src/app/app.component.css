@@ -1,3 +1,19 @@
 mat-toolbar-row > span{
     padding-right: 16px;
 }
+
+.mat-margin{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.btn-cancelar{
+
+    background-color: red;
+    color: white;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}

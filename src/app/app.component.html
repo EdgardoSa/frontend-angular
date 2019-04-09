@@ -5,13 +5,173 @@
 <mat-toolbar> 
 
   <mat-toolbar-row>
-      <span>Todos</span>
-      <span>Autos</span>    
-      <span>Salud</span>
-      <span>Hogar</span>
+      <span (click)="filtrarServicios('Todos')">Todos</span>
+      <span (click)="filtrarServicios('Autos')">Autos</span>    
+      <span (click)="filtrarServicios('Salud')">Salud</span>
+      <span (click)="filtrarServicios('Hogar')">Hogar</span>
   </mat-toolbar-row>
 
 </mat-toolbar>
+
+
+<!-- <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" [fxLayout]="'row wrap'">
+
+    <div [fxFlex]="20">
+                <mat-card>
+                    <mat-card-header style="justify-content: center">
+                        <mat-card-title>
+                            <h3>a</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                </mat-card><br>
+    </div>
+    <div [fxFlex]="20">
+                <mat-card>
+                    <mat-card-header style="justify-content: center">
+                        <mat-card-title>
+                            <h3>a</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                </mat-card><br>
+    </div>
+    <div [fxFlex]="20">
+                <mat-card>
+                    <mat-card-header style="justify-content: center">
+                        <mat-card-title>
+                            <h3>a</h3>
+                        </mat-card-title>
+                    </mat-card-header>
+                </mat-card><br>
+    </div>
+</div> -->
+
+<div fxLayout="row"
+     fxLayoutAlign="center"
+     fxLayoutGap="5px">
+
+  <div [fxLayout]="'row'" [fxFlex]="70">
+
+    <div fxLayout="row" fxLayoutGap="10px" [fxLayout]="'row wrap'" fxFlexOffset="15px">
+
+      <div [fxFlex]="30" *ngFor="let service of mostrarServicios">
+          <mat-card class="mat-margin">
+            <mat-card-title>{{service.title}}</mat-card-title>
+            <mat-card-content>{{service.content}}</mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary">Editar</button>
+                <button mat-button color="primary">Eliminar</button>
+            </mat-card-actions>
+          </mat-card>
+      </div>
+
+    </div> 
+
+  </div>
+
+  <div class="item item-5" [fxFlex]="30">
+      <mat-card class="mat-margin">
+        <mat-card-title>Servicio</mat-card-title>
+        <mat-card-content>
+
+            <mat-form-field>
+              <label>Nombre</label>
+              <input matInput [(ngModel)]="nombreServicio" [ngModelOptions]="{standalone: true}" type="text">
+            </mat-form-field>
+
+            <mat-form-field>
+              <label>Descripción</label>
+              <input matInput [(ngModel)]="descripcionServicio" [ngModelOptions]="{standalone: true}" type="text">
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="grabar()" mat-raised-button color="primary">Grabar</button>
+            <button (click)="cancelar()" mat-raised-button class="btn-cancelar">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>
+
+</div>
+
+<!-- <mat-grid-list cols="10" rowHeight="200px">
+  
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card>
+      <mat-card-title>Electricidad</mat-card-title>
+      <mat-card-content>Lorem ipsum, dolor sit amet consectetur adipisicing elit,</mat-card-content>
+      <mat-card-actions>
+          <button mat-button color="primary">Editar</button>
+          <button mat-button color="primary">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card>
+      <mat-card-title>Auxilio mecánico</mat-card-title>
+      <mat-card-content>Lorem ipsum, dolor sit amet consectetur adipisicing elit,</mat-card-content>
+      <mat-card-actions>
+          <button mat-button color="primary">Editar</button>
+          <button mat-button color="primary">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card>
+      <mat-card-title>Chofer reemplazo</mat-card-title>
+      <mat-card-content>Lorem ipsum, dolor sit amet consectetur adipisicing elit,</mat-card-content>
+      <mat-card-actions>
+          <button mat-button color="primary">Editar</button>
+          <button mat-button color="primary">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="4" [rowspan]="2" [style.background]="'red'">
+    <mat-card>
+      <mat-card-title></mat-card-title>
+      <mat-card-content></mat-card-content>
+      <mat-card-footer></mat-card-footer>
+    </mat-card>
+  </mat-grid-tile>
+  
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card>
+      <mat-card-title>Médico a domicilio</mat-card-title>
+      <mat-card-content>Lorem ipsum, dolor sit amet consectetur adipisicing elit,</mat-card-content>
+      <mat-card-actions>
+          <button mat-button color="primary">Editar</button>
+          <button mat-button color="primary">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card>
+      <mat-card-title>Ambulancia</mat-card-title>
+      <mat-card-content>Lorem ipsum, dolor sit amet consectetur adipisicing elit,</mat-card-content>
+      <mat-card-actions>
+          <button mat-button color="primary">Editar</button>
+          <button mat-button color="primary">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card>
+      <mat-card-title>Gasfitero</mat-card-title>
+      <mat-card-content>Lorem ipsum, dolor sit amet consectetur adipisicing elit,</mat-card-content>
+      <mat-card-actions>
+          <button mat-button color="primary">Editar</button>
+          <button mat-button color="primary">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list> -->
+
+
 
 
 
